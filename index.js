@@ -13,10 +13,26 @@ app.get('/', (req, res) => {
 });
 
 app.get('/pacientes', (req, res) => {
+  res.json([
+    {
+      nombre: 'Rodrigo',
+      apellido: 'Alvarez',
+      problema: 'dolor de cabeza',
+    },
+    {
+      nombre: 'Pedro',
+      apellido: 'Reqz',
+      problema: 'espalda',
+    },
+  ]);
+});
+
+app.get('/pacientes/:pacienteId', (req, res) => {
+  const id = req.params.pacienteId;
   res.json({
-    nombre: 'Rodrigo',
-    apellido: 'Alvarez',
-    problema: 'dolor de cabeza',
+    id: id,
+    nombre: 'Pepe',
+    apellido: 'Gonzalez',
   });
 });
 
