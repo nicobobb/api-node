@@ -44,6 +44,23 @@ app.get('/doctor/:doctorId/horarios/:horarioId', (req, res) => {
   });
 });
 
+// http://localhost:3000/turnos?page=23
+app.get('/turnos', (req, res) => {
+  const { page } = req.query;
+  res.json({
+    page,
+  });
+});
+
+// http://localhost:3000/profesional?page=23&sector=tomografia
+app.get('/profesional', (req, res) => {
+  const { page, sector } = req.query;
+  res.json({
+    page,
+    sector,
+  });
+});
+
 app.listen(port, () => {
   console.log(`Estoy usando el puerto ${port}`);
 });
