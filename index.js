@@ -30,9 +30,17 @@ app.get('/pacientes', (req, res) => {
 app.get('/pacientes/:pacienteId', (req, res) => {
   const { pacienteId } = req.params;
   res.json({
-    id: pacienteId,
+    pacienteId,
     nombre: 'Pepe',
     apellido: 'Gonzalez',
+  });
+});
+
+app.get('/doctor/:doctorId/horarios/:horarioId', (req, res) => {
+  const { doctorId, horarioId } = req.params;
+  res.json({
+    doctorId,
+    horarioId,
   });
 });
 
