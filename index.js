@@ -28,9 +28,9 @@ app.get('/pacientes', (req, res) => {
 });
 
 app.get('/pacientes/:pacienteId', (req, res) => {
-  const id = req.params.pacienteId;
+  const { pacienteId } = req.params;
   res.json({
-    id: id,
+    id: pacienteId,
     nombre: 'Pepe',
     apellido: 'Gonzalez',
   });
