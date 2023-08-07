@@ -29,4 +29,29 @@ router.get('/:pacienteId', (req, res) => {
   }
 });
 
+router.post('/', (req, res) => {
+  const body = req.body;
+  res.status(201).json({
+    status: 'Paciente cargado',
+    body,
+  });
+});
+
+router.patch('/:pacienteId', (req, res) => {
+  const body = req.body;
+  const { pacienteId } = req.params;
+  res.json({
+    message: 'Se actualizó el paciente',
+    body,
+    pacienteId,
+  });
+});
+
+router.delete('/:pacienteId', (req, res) => {
+  const { pacienteId } = req.params;
+  res.json({
+    message: `Se borró el paciente con id ${pacienteId}`,
+  });
+});
+
 module.exports = router;

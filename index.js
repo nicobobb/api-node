@@ -8,6 +8,8 @@ const port = 3000;
 // https://expressjs.com/en/guide/routing.html
 // https://hackernoon.com/es/entender-principios-solidos-en-javascript-w1cx3yrv
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send(
     '<h1>¡Por favor, no me comas! Tengo mujer e hijos ¡Comelos a ellos! (Homero)</h1>',
