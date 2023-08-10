@@ -2,23 +2,23 @@ const { v4: uuidv4 } = require('uuid');
 
 const pacientes = [];
 
-const obtenerPaciente = (id) => {
-  return pacientes.find((item) => item.id === id);
+const obtenerPaciente = async (id) => {
+  return await pacientes.find((item) => item.id === id);
 };
 
-const crearPacientes = ({ nombre, apellido, problema }) => {
+const crearPacientes = async ({ nombre, apellido, problema }) => {
   const paciente = {
     id: uuidv4(),
     nombre,
     apellido,
     problema,
   };
-  pacientes.push(paciente);
+  await pacientes.push(paciente);
   return paciente;
 };
 
-const actualizarPacientes = (id, cambios) => {
-  const index = pacientes.findIndex((item) => item.id === id);
+const actualizarPacientes = async (id, cambios) => {
+  const index = await pacientes.findIndex((item) => item.id === id);
   if (index === -1) {
     throw new Error('paciente no encontrado');
   }
@@ -30,8 +30,8 @@ const actualizarPacientes = (id, cambios) => {
   return pacientes[index];
 };
 
-const eliminarPacientes = (id) => {
-  const index = pacientes.findIndex((item) => item.id === id);
+const eliminarPacientes = async (id) => {
+  const index = await pacientes.findIndex((item) => item.id === id);
   if (index === -1) {
     throw new Error('paciente no encontrado');
   }
@@ -40,10 +40,19 @@ const eliminarPacientes = (id) => {
   return { id };
 };
 
+const delay = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(pacientes);
+    }, 3000);
+  });
+};
+
 module.exports = {
   pacientes,
   obtenerPaciente,
   crearPacientes,
   actualizarPacientes,
   eliminarPacientes,
+  delay,
 };
