@@ -1,5 +1,6 @@
 const express = require('express');
-const routerApi = require('./routes');
+const routerApiV1 = require('./v1/routes');
+const routerApiV2 = require('./v2/routes');
 const app = express();
 const port = 3000;
 
@@ -20,4 +21,5 @@ app.listen(port, () => {
   console.log(`Estoy usando el puerto ${port}`);
 });
 
-routerApi(app);
+routerApiV1(app);
+routerApiV2(app);

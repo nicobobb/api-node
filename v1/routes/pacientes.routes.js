@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/pacientes.controllers');
+const controller = require('../../controllers/pacientes.controllers');
 
 // --------------------------------------- //
 router.get('/delay', async (req, res) => {
