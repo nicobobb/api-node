@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../../controllers/pacientes.controllers');
 
-// --------------------------------------- //
-router.get('/delay', async (req, res) => {
+/* router.get('/delay', async (req, res) => {
   const pacientes = await controller.delay();
   res.json(pacientes);
-});
-// --------------------------------------- //
+}); */
+
+router.get('/delay', controller.delay);
 
 router.get('/', async (req, res) => {
   const pacientes = await controller.pacientes;

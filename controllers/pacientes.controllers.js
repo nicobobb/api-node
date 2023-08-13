@@ -1,3 +1,4 @@
+const pacienteService = require('../services/pacientes.service');
 const { v4: uuidv4 } = require('uuid');
 
 const pacientes = [];
@@ -40,12 +41,18 @@ const eliminarPacientes = async (id) => {
   return { id };
 };
 
-const delay = async () => {
+/* const delay = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(pacientes);
     }, 3000);
   });
+};
+*/
+
+const delay = async (req, res) => {
+  const Allpacientes = await pacienteService.delay(pacientes);
+  res.json(Allpacientes);
 };
 
 module.exports = {
