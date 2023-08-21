@@ -2,7 +2,7 @@ const express = require('express');
 const routerApiV1 = require('./v1/routes');
 const routerApiV2 = require('./v2/routes');
 const app = express();
-const port = 3000;
+const port = 4000;
 
 // REQuest >> peticion
 // RESponse >> respuesta
