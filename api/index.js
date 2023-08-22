@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const routerApiV1 = require('./v1/routes');
 const routerApiV2 = require('./v2/routes');
 const app = express();
@@ -10,6 +11,12 @@ const port = 4000;
 // https://hackernoon.com/es/entender-principios-solidos-en-javascript-w1cx3yrv
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+  }),
+);
 
 app.get('/', (req, res) => {
   res.send(
