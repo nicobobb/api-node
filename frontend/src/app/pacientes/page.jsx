@@ -14,14 +14,22 @@ const Paciente = async () => {
   return (
     <div className="mx-auto max-w-screen-lg my-20">
       <section className="grid justify-center md:grid-cols-3 lg:grid-cols-3 gap-8">
-        {pacientes.map((paciente) => (
-          <SinglePacient
-            key={paciente.id}
-            nombre={paciente.nombre}
-            apellido={paciente.apellido}
-            problema={paciente.problema}
-          />
-        ))}
+        {pacientes == "" ? (
+          <div className="grid">
+            <h1 className="font-black text-gray-200 text-7xl">
+              No hay pacientes
+            </h1>
+          </div>
+        ) : (
+          pacientes.map((paciente) => (
+            <SinglePacient
+              key={paciente.id}
+              nombre={paciente.nombre}
+              apellido={paciente.apellido}
+              problema={paciente.problema}
+            />
+          ))
+        )}
       </section>
     </div>
   );
