@@ -24,6 +24,7 @@ const Paciente = async () => {
           pacientes.map((paciente) => (
             <SinglePacient
               key={paciente.id}
+              id={paciente.id}
               nombre={paciente.nombre}
               apellido={paciente.apellido}
               problema={paciente.problema}
