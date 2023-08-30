@@ -1,6 +1,8 @@
 "use client";
+import { useRouter } from "next/navigation";
 
 const Edit = ({ params }) => {
+  const router = useRouter();
   const handleDelete = async () => {
     console.log("Hola Mundo");
     const res = await fetch(
@@ -10,6 +12,8 @@ const Edit = ({ params }) => {
       }
     );
     const data = await res.json();
+    console.log(data);
+    router.push("/pacientes");
   };
   return (
     <div>
