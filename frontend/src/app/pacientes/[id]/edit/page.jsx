@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { Form } from "./components/Form";
 
 const Edit = ({ params }) => {
   const router = useRouter();
@@ -17,8 +18,13 @@ const Edit = ({ params }) => {
   };
   return (
     <div>
-      {params.id}
-      <button onClick={handleDelete}>Borrar</button>
+      <h1 className="bg-white">{params.id}</h1>
+      <Form id={params.id} />
+      <div className="text-center">
+        <button className="bg-white p-2 text-lg" onClick={handleDelete}>
+          Borrar
+        </button>
+      </div>
     </div>
   );
 };

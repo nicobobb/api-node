@@ -2,7 +2,7 @@ import { SinglePacient } from "./components/SinglePacient";
 
 async function getData() {
   const res = await fetch("http://localhost:4000/api/v1/pacientes", {
-    next: { revalidate: 1 },
+    cache: "force-cache",
   });
   const data = await res.json();
   return data;
