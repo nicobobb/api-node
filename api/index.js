@@ -4,7 +4,7 @@ const routerApiV1 = require('./v1/routes');
 const routerApiV2 = require('./v2/routes');
 const app = express();
 const port = 4000;
-const { logErrors, errorHandler } = require('./middlewares/error');
+const { logErrors, errorHandler } = require('./middlewares/error.handler');
 
 // REQuest >> peticion
 // RESponse >> respuesta

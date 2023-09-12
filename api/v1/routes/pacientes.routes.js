@@ -20,14 +20,18 @@ router.get('/:pacienteId', async (req, res) => {
   res.json(paciente);
 });
 
-router.post('/', async (req, res) => {
-  const { nombre, apellido, problema } = req.body;
-  const pacienteNuevo = await controller.crearPacientes({
-    nombre,
-    apellido,
-    problema,
-  });
-  res.status(201).json(pacienteNuevo);
+router.post('/', async (req, res, next) => {
+  try {
+    const { nombre, apellido, problema } = req.body;
+    const pacienteNuevo = await controller.crearPacientes({
+      nombre,
+      apellido,
+      problema,
+    });
+    res.status(201).json(pacienteNuevo);
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.patch('/:pacienteId', async (req, res) => {

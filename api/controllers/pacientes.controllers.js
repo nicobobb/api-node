@@ -14,6 +14,7 @@ const crearPacientes = async ({ nombre, apellido, problema }) => {
     apellido,
     problema,
   };
+  const pepe = pepes();
   await pacientes.push(paciente);
   return paciente;
 };
