@@ -44,6 +44,6 @@ const borrarPaciente = async (nombre) => {
 };
 
 // crearPaciente("Alejandro", 25);
-// actualizarPaciente("Pepe", "55", "Alejandro");
-//leerDb();
-borrarPaciente("Pepe");
+actualizarPaciente("Pepe", "55", "Alejandro");
+// leerDb();
+//borrarPaciente("Pepe");
