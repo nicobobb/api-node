@@ -1,29 +1,37 @@
-require("dotenv").config();
-const express = require("express");
-const multer = require("multer");
-const PORT = process.env.PORT;
+import express from "express";
+import multer from "multer";
+import { dirname, extname, join } from "path";
+import { fileURLToPath } from "url";
+const PORT = process.env.PORT || 4000;
 console.log(PORT);
 
 const app = express();
-app.use(express.json());
+const CURRENT_DIR = dirname(fileURLToPath(import.meta.url));
+const MIMETYPES = ["image/jpeg", "image/png"];
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./uploads");
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: join(CURRENT_DIR, "./files"),
+        filename: (req, file, cb) => {
+            const fileExtension = extname(file.originalname);
+            const fileName = file.originalname.split(fileExtension)[0];
+
+            cb(null, `${fileName}-${Date.now()}${fileExtension}`);
+        },
+    }),
+    fileFilter: (req, file, cb) => {
+        if (MIMETYPES.includes(file.mimetype)) cb(null, true);
+        else cb(new Error(`Only ${MIMETYPES.join(" ")} mimetypes are allowed`));
     },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-        cb(null, file.fieldname + "-" + uniqueSuffix + ".zip");
+    limits: {
+        fieldSize: 10000000,
     },
 });
+app.use(express.json());
 
-const upload = multer({ storage: storage });
-
-app.post("/zip", upload.single("zip"), (req, res) => {
-    const body = req.body;
-    const zip = req.file;
-    console.log(zip);
-    res.json(body);
+app.post("/api/upload", upload.single("file"), (req, res) => {
+    console.log(req.file);
+    res.sendStatus(200);
 });
 
 app.listen(PORT, () => {
